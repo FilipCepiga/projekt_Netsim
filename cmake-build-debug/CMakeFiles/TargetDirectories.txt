@@ -1,0 +1,3 @@
+/Users/fifi/Library/Mobile Documents/com~apple~CloudDocs/AGH - AiR /AGH 3.semestr/Zaawansowane Programownie Obiektowe/projekt_Netsim/cmake-build-debug/CMakeFiles/projekt_Netsim.dir
+/Users/fifi/Library/Mobile Documents/com~apple~CloudDocs/AGH - AiR /AGH 3.semestr/Zaawansowane Programownie Obiektowe/projekt_Netsim/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/fifi/Library/Mobile Documents/com~apple~CloudDocs/AGH - AiR /AGH 3.semestr/Zaawansowane Programownie Obiektowe/projekt_Netsim/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -14,6 +14,7 @@ public:
     Package(Package&&);
     operator=(Package&&) : Package&;
     get_id(): ElementID {query};
+
     ~Package();
 
 private:

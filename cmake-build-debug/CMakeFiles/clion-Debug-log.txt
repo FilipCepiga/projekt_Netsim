@@ -1,0 +1,4 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S "/Users/fifi/Library/Mobile Documents/com~apple~CloudDocs/AGH - AiR /AGH 3.semestr/Zaawansowane Programownie Obiektowe/projekt_Netsim" -B "/Users/fifi/Library/Mobile Documents/com~apple~CloudDocs/AGH - AiR /AGH 3.semestr/Zaawansowane Programownie Obiektowe/projekt_Netsim/cmake-build-debug"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/fifi/Library/Mobile Documents/com~apple~CloudDocs/AGH - AiR /AGH 3.semestr/Zaawansowane Programownie Obiektowe/projekt_Netsim/cmake-build-debug

@@ -1,0 +1,6 @@
+# ninja log v5
+0	40	1701184498910651421	build.ninja	c0f55885659d9c70
+0	48	1701181869608327615	CMakeFiles/projekt_Netsim.dir/src/package.cpp.o	76030262f2e928
+9	363	1701182872890779411	CMakeFiles/projekt_Netsim.dir/main.cpp.o	c34f3d4cd97fa1b8
+255	287	1701181891748412516	projekt_Netsim	c16a213fbaa9e66c
+9	74	1701184500752000299	CMakeFiles/projekt_Netsim.dir/src/storage_types.cpp.o	944b844e8d7a264e
