@@ -1,10 +1,7 @@
 #include <iostream>
 
 int main() {
-    std::cout << "/twoj, stary!" << std::endl;
-    std::cout<<"filip cepiga to szef"<<std::endl;
-    std::cout << "Akcja KEBAB!" << std::endl;
-    std::cout << "Twoja stara to twój stary" << std::endl;
+    std::cout << "Witamy w projekcie Netsim!"<< std::endl;
     return 0;
 
 }

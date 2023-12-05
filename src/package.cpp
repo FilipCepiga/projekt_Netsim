@@ -3,11 +3,11 @@
 //
 #include "package.hpp"
 
-std::set<ElementID> Package::assigned_IDs = {};
 std::set<ElementID> Package::freed_IDs = {};
+std::set<ElementID> Package::assigned_IDs = {};
 
 Package::Package() {
-    if (assigned_IDs.empty() && freed_IDs.empty()) {
+    if (freed_IDs.empty() && assigned_IDs.empty()) {
         ID_ = 1;
     } else if (!freed_IDs.empty()) {
         ID_ = *freed_IDs.begin();
