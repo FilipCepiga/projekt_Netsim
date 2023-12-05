@@ -4,7 +4,6 @@ include_directories(include)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(projekt_Netsim main.cpp include/package.hpp src/package.cpp  src/storage_types.cpp include/storage_types.hpp include/types.hpp)
 add_compile_options(-Wall -Wextra -Werror -Wpedantic -pedantic-errors -Wconversion)
 
 include_directories(include)
@@ -14,7 +13,7 @@ set(SOURCE_FILES
         src/storage_types.cpp
         )
 
-add_executable(netsim ${SOURCE_FILES} main.cpp)
+add_executable(projekt_Netsim ${SOURCE_FILES} main.cpp)
 
 set(SOURCES_FILES_TESTS
         test/main_gtest.cpp
@@ -27,9 +26,9 @@ set(SOURCES_FILES_TESTS
         test/test_storage_types.cpp
         )
 
-add_executable(netsim_test ${SOURCE_FILES} ${SOURCES_FILES_TESTS} test/main_gtest.cpp)
+add_executable(projekt_Netsim_test ${SOURCE_FILES} ${SOURCES_FILES_TESTS} test/main_gtest.cpp)
 
-target_include_directories(netsim_test PUBLIC
+target_include_directories(projekt_Netsim_test PUBLIC
         googletest-master/googlemock/include
         googletest-master/googletest/include
         mocks
@@ -37,6 +36,6 @@ target_include_directories(netsim_test PUBLIC
 
 add_subdirectory(googletest-master)
 
-target_link_libraries(netsim_test gmock)
+target_link_libraries(projekt_Netsim_test gmock)
 
-target_compile_definitions(netsim_test PUBLIC EXERCISE_ID=EXERCISE_ID_NODES)
+target_compile_definitions(projekt_Netsim_test PUBLIC EXERCISE_ID=EXERCISE_ID_NODES)
