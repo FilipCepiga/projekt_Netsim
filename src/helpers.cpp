@@ -1,6 +1,6 @@
 //
 // Created by Filip Cepiga on 12/12/2023.
-//
+// generowanie liczb losowych
 
 #include <random>
 
