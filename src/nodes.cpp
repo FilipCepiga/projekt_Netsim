@@ -2,6 +2,7 @@
 // Created by Filip Cepiga on 12/12/2023.
 //
 
+
 #include "nodes.hpp"
 
 Ramp::Ramp(const Ramp &ramp) {
@@ -33,22 +34,12 @@ Worker& Worker::operator=(const Worker &worker) noexcept {
 }
 
 void ReceiverPreferences::add_receiver(IPackageReceiver *r){
-<<<<<<< HEAD
     double num_of_receivers_begin = double(preferences_.size());
     if (num_of_receivers_begin == 0) {
         preferences_[r] = 1.0;
     } else {
         for (auto &rec: preferences_) {
             rec.second = 1 / (num_of_receivers_begin + 1);
-=======
-    if(preferences_.empty()){
-        preferences_.emplace(r, 1);
-    }else{
-        preferences_.emplace(r, 0);
-        std::size_t prefSize = preferences_.size();
-        for(auto& i : preferences_){
-            i.second = (1.0/double(prefSize));
->>>>>>> 5350a4816f48cebdab3930d645e3a115d67d57c0
         }
         preferences_[r] = 1 / (num_of_receivers_begin + 1);
     }
