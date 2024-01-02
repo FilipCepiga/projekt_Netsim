@@ -3,11 +3,11 @@
 //
 #include "storage_types.hpp"
 
-void PackageQueue::push(Package &&package){
+void PackageQueue::push(Package &&package) {
     stockpile_.emplace_back(std::move(package));
 }
 
-Package PackageQueue::pop(){
+Package PackageQueue::pop() {
     Package package;
     switch (queueType_){
         case PackageQueueType::FIFO:

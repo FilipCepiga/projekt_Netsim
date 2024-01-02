@@ -8,7 +8,7 @@
 #include "nodes.hpp"
 #include <vector>
 
-template <class Node> class NodeCollection{
+template <class Node> class NodeCollection {
 public:
     using container_t = typename std::list<Node>;
     using iterator = typename container_t::iterator;
@@ -31,10 +31,9 @@ private:
     container_t collection_;
 };
 
-class Factory{
+class Factory {
 public:
     Factory() = default;
-
     void add_ramp(Ramp&& ramp) { ramps_.add(std::move(ramp)); }
     void remove_ramp(ElementID id) { ramps_.remove_by_id(id); }
     NodeCollection<Ramp>::iterator find_ramp_by_id(ElementID id) { return ramps_.find_by_id(id); }
@@ -63,24 +62,21 @@ public:
     void do_work(Time time);
 
     enum class NodeColor { UNVISITED, VISITED, VERIFIED };
-
     bool has_reachable_storehouse(const PackageSender* sender, std::map<const PackageSender*, NodeColor>& node_colors);
     bool is_consistent();
-
     void remove_receiver(NodeCollection<Worker>& collection, ElementID id);
     void remove_receiver(NodeCollection<Storehouse>& collection, ElementID id);
-
 private:
     NodeCollection<Ramp> ramps_;
     NodeCollection<Storehouse> storehouses_;
     NodeCollection<Worker> workers_;
 };
 
-enum class ElementType{
+enum class ElementType {
     RAMP, WORKER, STOREHOUSE, LINK
 };
 
-class ParsedLineData{
+class ParsedLineData {
 public:
     ParsedLineData() = default;
     ParsedLineData(ElementType elementType, std::map<std::string, std::string> &&parameters) : element_type_(elementType), parameters_(parameters) {}
@@ -95,6 +91,5 @@ private:
 ParsedLineData parse_line(std::string line);
 Factory load_factory_structure(std::istream& is);
 void save_factory_structure(Factory& factory, std::ostream& os);
-
 
 #endif //PROJEKT_NETSIM_FACTORY_HPP

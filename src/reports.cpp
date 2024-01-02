@@ -5,7 +5,7 @@
 #include "reports.hpp"
 #include "sstream"
 
-void generate_structure_report(const Factory& f, std::ostream& os){
+void generate_structure_report(const Factory& f, std::ostream& os) {
     os << "\n== LOADING RAMPS ==\n\n";
     std::for_each(f.ramp_cbegin(), f.ramp_cend(), [&os](const Ramp& ramp) {
         os << "LOADING RAMP #" << ramp.get_id() <<"\n  Delivery interval: " << ramp.get_delivery_interval() << "\n  Receivers:";
@@ -36,7 +36,7 @@ void generate_structure_report(const Factory& f, std::ostream& os){
     std::for_each(f.storehouse_cbegin(), f.storehouse_cend(), [&os](const Storehouse& storehouse) {os << "STOREHOUSE #" << storehouse.get_id() << "\n\n";});
 }
 
-void generate_simulation_turn_report(const Factory& f, std::ostream& os, Time t){
+void generate_simulation_turn_report(const Factory& f, std::ostream& os, Time t) {
     os << "=== [ Turn: " << t << " ] ===\n\n== WORKERS ==\n\n";
     std::for_each(f.worker_cbegin(), f.worker_cend(), [&os, t](const Worker& worker) {
         os << "WORKER #" << worker.get_id() << "\n  PBuffer: ";
@@ -60,7 +60,7 @@ void generate_simulation_turn_report(const Factory& f, std::ostream& os, Time t)
             }
         }
         os << "\n  SBuffer: ";
-        if(worker.get_sending_buffer().has_value()){
+        if(worker.get_sending_buffer().has_value()) {
             os << "#" << worker.get_sending_buffer()->get_id();
         }
         else{
