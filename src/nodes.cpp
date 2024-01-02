@@ -23,6 +23,7 @@ Worker::Worker(const Worker &worker){
     pd_ = worker.get_processing_duration();
     receiver_preferences_ = worker.receiver_preferences_;
     q_ = std::make_unique<PackageQueue>(worker.get_queue()->get_queue_type());
+    st_ = worker.get_package_processing_start_time();
 }
 
 Worker& Worker::operator=(const Worker &worker) noexcept {
@@ -30,31 +31,44 @@ Worker& Worker::operator=(const Worker &worker) noexcept {
     pd_ = worker.get_processing_duration();
     receiver_preferences_ = worker.receiver_preferences_;
     q_ = std::make_unique<PackageQueue>(worker.get_queue()->get_queue_type());
+    st_ = worker.get_package_processing_start_time();
     return *this;
 }
 
+Storehouse::Storehouse(const Storehouse &storehouse){
+    id_ = storehouse.get_id();
+    d_ = std::make_unique<PackageQueue>(PackageQueueType::FIFO);
+}
+
+Storehouse& Storehouse::operator=(const Storehouse &storehouse) noexcept {
+    id_ = storehouse.get_id();
+    d_ = std::make_unique<PackageQueue>(PackageQueueType::FIFO);
+    return *this;
+}
+
+
+
 void ReceiverPreferences::add_receiver(IPackageReceiver *r){
-    double num_of_receivers_begin = double(preferences_.size());
-    if (num_of_receivers_begin == 0) {
-        preferences_[r] = 1.0;
-    } else {
-        for (auto &rec: preferences_) {
-            rec.second = 1 / (num_of_receivers_begin + 1);
+    if(preferences_.empty()){
+        preferences_.emplace(r, 1);
+    }
+    else{
+        preferences_.emplace(r, 0);
+        std::size_t prefSize = preferences_.size();
+        for(auto& i : preferences_){
+            i.second = (1.0/double(prefSize));
         }
-        preferences_[r] = 1 / (num_of_receivers_begin + 1);
     }
 }
 
 void ReceiverPreferences::remove_receiver(IPackageReceiver *r){
-    double num_of_receivers_begin = double(preferences_.size());
-    if (num_of_receivers_begin > 1) {
-        for (auto &rec: preferences_) {
-            if (rec.first != r) {
-                rec.second = 1 / (num_of_receivers_begin - 1);
-            }
+    preferences_.erase(r);
+    if(!preferences_.empty()) {
+        std::size_t prefSize = preferences_.size();
+        for (auto &i: preferences_) {
+            i.second = (1.0 / double(prefSize));
         }
     }
-    preferences_.erase(r);
 }
 
 IPackageReceiver* ReceiverPreferences::choose_receiver(){
@@ -85,20 +99,24 @@ void PackageSender::send_package(){
 }
 
 void Ramp::deliver_goods(Time t){
-    if (t % di_ == 1){
+    if(di_ == 1){
+        Package package = Package();
+        push_package(std::move(package));
+    }
+    else if(t % di_ == 1){
         Package package = Package();
         push_package(std::move(package));
     }
 }
 
 void Worker::do_work(Time t){
-    if(!buffer_.has_value()){
-        buffer_.emplace(q_->pop());
+    if(!processing_buffer_.has_value() && !q_->empty()){
+        processing_buffer_.emplace(q_->pop());
         st_ = t;
     }
-    else if(t - st_ + 1 == pd_){
-        push_package(std::move(*buffer_));
-        buffer_.reset();
+    if(t - st_ + 1 == pd_ && processing_buffer_.has_value()){
+        push_package(std::move(*processing_buffer_));
+        processing_buffer_.reset();
     }
 }
 
