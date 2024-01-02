@@ -14,7 +14,8 @@ set(SOURCE_FILES
         src/helpers.cpp
         src/nodes.cpp
         src/factory.cpp
-        )
+        src/reports.cpp
+        src/simulation.cpp)
 
 add_executable(projekt_Netsim ${SOURCE_FILES} main.cpp)
 
@@ -26,7 +27,7 @@ set(SOURCES_FILES_TESTS
         test/test_package.cpp
         test/test_reports.cpp
         test/test_simulate.cpp
-        test/test_storage_types.cpp include/factory.hpp)
+        test/test_storage_types.cpp)
 
 add_executable(projekt_Netsim_test ${SOURCE_FILES} ${SOURCES_FILES_TESTS} test/main_gtest.cpp)
 
